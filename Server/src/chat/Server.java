@@ -13,7 +13,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * 
+ * 채팅방 서버
  * @author Taehee Kwon, dhstoalfh9509@gmail.com, 2019
  * @since  2019. 10. 31.
  */
@@ -30,9 +30,11 @@ public class Server {
 		ServerSocket server_socket = null;
 		
 		int count = 0;
+		// 채팅방에 10명으로 제한..? (test 해보기)
 		Thread thread[] = new Thread[10];
 		
 		try {
+			// 서버 생성
 			server_socket = new ServerSocket();
 			
 			// 소켓을 호스트의 포트와 바인딩
@@ -45,7 +47,7 @@ public class Server {
 				// client로부터 연결 요청 올 때까지 접속 대기
 				// 연결 요청 오기 전에 서버는 BLOCK 상태, 연결이 되면 통신을 위한 Socket 객체 반환
 				socket = server_socket.accept();
-				
+				// 연결 오면 사용자를 서버에 접속시킴
 				thread[count] = new Thread(new Receiver(user, socket));
 				thread[count].start();
 				count++;
