@@ -1,3 +1,10 @@
+/*
+ * Client.java
+ * 
+ * Author : taehee Kwon
+ * Date : 2019. 10. 31
+ * Contact : dhstoalfh9509@gmail.com
+ */
 package chat;
 
 import java.io.BufferedReader;
@@ -7,6 +14,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+/**
+ * 채팅을 사용하는 입장에서 서버에 접속해 닉네임 설정 및 데이터 출력
+ * @author Taehee Kwon, dhstoalfh9509@gmail.com, 2019
+ * @since  2019. 11. 1.
+ */
 public class Client {
 	public static void main(String...args){
 		Socket socket = null;
@@ -26,7 +38,6 @@ public class Client {
 			// 채팅방에서 사용 할 닉네임 입력
 			System.out.print("닉네임을 입력해주세요 : ");
 			String data = br.readLine();
-			
 			// 서버로 닉네임 전송
 			out.writeUTF(data);
 			
@@ -38,7 +49,7 @@ public class Client {
 		}
 		
 		try {
-			// 클라이언트의 메인 쓰레드는 서버로부터 데이터 읽어들이는 것만 반복
+			// 클라이언트의 메인 쓰레드는 서버로부터 데이터 읽어들이는 것 반복
 			while(true){
 				String str = in.readUTF();
 				System.out.println(str);
